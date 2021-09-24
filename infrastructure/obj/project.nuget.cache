@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x0pUjCv6EyhUVTqZQlaIfN2hDlf37/DSEvXP0Bi0pSFtyUB22CMTibs0NEOdnbQoUccQZiB5ysqHYACcMODqrQ==",
+  "dgSpecHash": "15Ue2TT+xcfaZagFfYahTHJgJioUwfCmul6NPCZG0HzXrhN0iIQ7ChN7VLV8Xf8iGjczvNcs34jrij/dBq27fA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\infrastructure\\infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ali\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Ali\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

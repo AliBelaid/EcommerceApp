@@ -477,14 +477,14 @@
           "lib/netcoreapp2.1/_._": {}
         }
       },
-      "core/1.0.0": {
+      "Core/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "compile": {
-          "bin/placeholder/core.dll": {}
+          "bin/placeholder/Core.dll": {}
         },
         "runtime": {
-          "bin/placeholder/core.dll": {}
+          "bin/placeholder/Core.dll": {}
         }
       }
     }
@@ -1286,43 +1286,46 @@
         "version.txt"
       ]
     },
-    "core/1.0.0": {
+    "Core/1.0.0": {
       "type": "project",
-      "path": "../core/core.csproj",
-      "msbuildProject": "../core/core.csproj"
+      "path": "../Core/Core.csproj",
+      "msbuildProject": "../Core/Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Core >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 5.0.9",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.9",
       "Microsoft.EntityFrameworkCore.Sqlite >= 5.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.9",
-      "Swashbuckle.AspNetCore >= 5.0.0",
-      "core >= 1.0.0"
+      "Swashbuckle.AspNetCore >= 5.0.0"
     ]
   },
   "packageFolders": {
     "C:\\Users\\Ali\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\infrastructure\\infrastructure.csproj",
-      "projectName": "infrastructure",
-      "projectPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\infrastructure\\infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Infrastructure\\Infrastructure.csproj",
+      "projectName": "Infrastructure",
+      "projectPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Infrastructure\\Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Ali\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\infrastructure\\obj\\",
+      "outputPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\Ali\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1336,8 +1339,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\core\\core.csproj": {
-              "projectPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\core\\core.csproj"
+            "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\Core.csproj"
             }
           }
         }
@@ -1392,7 +1395,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

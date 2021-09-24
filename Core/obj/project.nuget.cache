@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4WPXd1kJJPtdC3OKk5mfckrUPRkXhBkrd15Cx+WclLV14kuFMgVWiw6SNVh1b4rMopAInVrkJqd/6O7n7IGh+w==",
+  "dgSpecHash": "SgGBfBQcXJ8tk6cd37M7cVvEqy8HIrSaC8th7SXQam0Z53tvz/UFZwZVtxvh0KK9RGgqRQLxiM5dz4cTYiEVBg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\core\\core.csproj",
+  "projectFilePath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

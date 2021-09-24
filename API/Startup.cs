@@ -1,22 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API.Errors;
 using API.Extensions;
-using API.Helpers;
-using Core.interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 
 namespace API {
     public class Startup {
@@ -28,32 +18,39 @@ namespace API {
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services) {
+        public void ConfigureServices (IServiceCollection services) {
 
-            services.AddControllers();
+            services.AddControllers ();
             services.AddDbContext<StoreContext> (x => x.UseSqlite (_conf.GetConnectionString ("DefaultConnection")));
-            services.AddApplicationServices();
-services.AddSwaggerDocumentation();
-         
+            services.AddApplicationServices ();
+            services.AddSwaggerDocumentation ();
+            services.AddCors(
+                opt => {
+                    opt.AddPolicy("CorsPolicy",policy=> {
+                        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                        
+                    });
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure (IApplicationBuilder app, IWebHostEnvironment env) {
-                 app.UseSwaggerDocumentation();
+            app.UseSwaggerDocumentation ();
 
             if (env.IsDevelopment ()) {
 
                 app.UseMiddleware<ExceptionMiddleware> ();
-          
+
             }
-            app.UseStatusCodePagesWithReExecute ("/errors/{0}");
-            app.UseHttpsRedirection ();
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
+            app.UseHttpsRedirection();
 
-            app.UseRouting ();
-
-            app.UseAuthorization ();
-            app.UseStaticFiles ();
-            app.UseEndpoints (endpoints => {
+            app.UseRouting();
+            app.UseCors("CorsPolicy");
+            app.UseAuthorization();
+            app.UseStaticFiles();
+            app.UseEndpoints(endpoints => {
                 endpoints.MapControllers ();
             });
         }

@@ -1,3 +1,6 @@
+import { ShopRoutingModule } from './shop-routing.module';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { RouterModule } from '@angular/router';
 import { ShardModule } from './../shard/shard.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,13 +12,14 @@ import { ProductItemComponent } from './product-item/product-item.component';
 @NgModule({
   declarations: [
     ShopComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    ProductDetailsComponent
   ],
-  exports:[
-    ShopComponent],
+
   imports: [
     CommonModule,
-    ShardModule
+    ShardModule,
+    ShopRoutingModule
   ]
 })
 export class ShopModule { }

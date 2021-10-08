@@ -10,3 +10,16 @@
   right: 32px;
 text-align: center;
 }
+a {
+  color:#343a40 ;
+  text-decoration: none;
+  &.active {
+    color: orange;
+  }
+}
+.logo{
+  cursor: pointer;
+  &.focus{
+    outline: none;
+  }
+}

@@ -1,3 +1,4 @@
+import { HomeModule } from './home/home.module';
 import { ShardModule } from './shard/shard.module';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +27,8 @@ import { ShopService } from './shop/shop.service';
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ShopModule,
+
+    HomeModule
 
   ],
   providers: [

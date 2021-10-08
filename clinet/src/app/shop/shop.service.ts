@@ -1,3 +1,4 @@
+import { IProduct } from './../models/product';
 import { ShopParams } from './../models/ShopParams';
 import { IType } from '../models/productType';
 import { IBrand } from './../models/brand';
@@ -12,7 +13,7 @@ export class ShopService {
   baseUrl = 'https://localhost:5001/api/';
   constructor(private http: HttpClient) { }
 
-  getProduct(ShopParams: ShopParams) {
+  getProducts(ShopParams: ShopParams) {
     let params = new HttpParams();
     if (ShopParams.brandId) {
       params = params.append('brandId', ShopParams.brandId.toString());
@@ -40,6 +41,9 @@ export class ShopService {
   }
   getType() {
     return this.http.get<IType[]>(this.baseUrl + 'Products/types');
+  }
+  getProduct(id:number){
+    return this.http.get<IProduct>(this.baseUrl+'Products/'+id);
   }
 
 }

@@ -15,7 +15,7 @@ import { isThisTypeNode } from 'typescript';
 })
 export class ShopComponent implements OnInit {
   products!: IProduct[];
-  @ViewChild('search', { static: true })
+  @ViewChild('search', { static: false })
   searchTerm!: ElementRef;
   brands!: IBrand[];
   types!: IType[];

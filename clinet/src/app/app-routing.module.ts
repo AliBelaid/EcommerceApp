@@ -1,3 +1,7 @@
+import { BreadcrumbComponent } from 'xng-breadcrumb';
+import { ServerErrorComponent } from './core/server-error/server-error.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
+import { TestErrorComponent } from './core/test-error/test-error.component';
 import { ShopRoutingModule } from './shop/shop-routing.module';
 import { ProductDetailsComponent } from './shop/product-details/product-details.component';
 import { ShopComponent } from './shop/shop.component';
@@ -7,9 +11,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
 
-  { path: '', component: HomeComponent },
-  { path: 'shop', loadChildren:()=>import('./shop/shop.module').then(mod=>mod.ShopModule)},
-  {path:'**',redirectTo: '', pathMatch:'full'}
+  { path: '', component: HomeComponent ,data:{breadcrumb:'Home'}},
+   { path: 'test-error', component: TestErrorComponent,data:{breadcrumb: 'Test Errors'} },
+   { path: 'not-found', component: NotFoundComponent ,data:{breadcrumb: 'Not Found'}},
+   { path: 'server-error', component: ServerErrorComponent ,data:{breadcrumb: 'Server Errors'}},
+
+
+  { path: 'shop', loadChildren:()=>import('./shop/shop.module').then(mod=>mod.ShopModule),data:{breadcrumb: 'Shop'}},
+  {path:'**',redirectTo: 'not-found', pathMatch:'full'}
 ];
 
 @NgModule({

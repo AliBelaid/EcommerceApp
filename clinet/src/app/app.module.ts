@@ -1,23 +1,19 @@
+import { LoadingInterceptor } from './core/interceptors/loading.interceptors';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { HomeModule } from './home/home.module';
-import { ShardModule } from './shard/shard.module';
 import { CoreModule } from './core/core.module';
-import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavBarComponent } from './core/nav-bar/nav-bar.component';
-import { ShopModule } from './shop/shop.module';
-import { ShopService } from './shop/shop.service';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import {CarouselModule}  from 'ngx-bootstrap/carousel';
 @NgModule({
   declarations: [
     AppComponent,
-
-
 
   ],
   imports: [
@@ -27,13 +23,18 @@ import { ShopService } from './shop/shop.service';
     NgbModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    NgxSpinnerModule,
+    HomeModule,
 
-    HomeModule
 
   ],
   providers: [
-
+    {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
+,{provide:HTTP_INTERCEPTORS,useClass: LoadingInterceptor,multi:true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+]
 })
 export class AppModule { }

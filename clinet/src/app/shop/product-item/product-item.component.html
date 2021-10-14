@@ -4,7 +4,7 @@
     alt="{{product.name}}"
     class="img-fluid bg-info">
     <div class="d-flex justify-content-center hover-overlay align-items-center">
-      <button type="button" class="btn btn-outline-primary fa fa-shopping-cart mr-2"></button>
+      <button type="button" (click)="addItemToBasket()" class="btn btn-outline-primary fa fa-shopping-cart mr-2"></button>
       <button type="button" class="btn btn-outline-primary "
        routerLink="/shop/{{product.id}}">View</button>
     </div>

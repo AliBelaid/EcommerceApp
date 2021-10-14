@@ -2,3 +2,4 @@ onj
 bin
 appsettings.json
 *.db
+*.rdb

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StackExchange.Redis;
 
 namespace API {
     public class Startup {
@@ -20,9 +21,19 @@ namespace API {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices (IServiceCollection services) {
 
-            services.AddControllers ();
-            services.AddDbContext<StoreContext> (x => x.UseSqlite (_conf.GetConnectionString ("DefaultConnection")));
-            services.AddApplicationServices ();
+            services.AddControllers();
+            services.AddDbContext<StoreContext>(x => x.UseSqlite(_conf.GetConnectionString("DefaultConnection")));
+              services.AddSingleton<IConnectionMultiplexer>(c => {
+                var configuration = 
+                ConfigurationOptions.Parse(_conf.GetConnectionString("Redis"),true);
+                return ConnectionMultiplexer.Connect(configuration);
+            }
+                );
+      
+      
+            services.AddApplicationServices();
+    
+ 
             services.AddSwaggerDocumentation ();
             services.AddCors(
                 opt => {

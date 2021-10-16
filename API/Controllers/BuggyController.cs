@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using API.Errors;
 using Core.Entities;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -30,7 +31,12 @@ namespace API.Controllers {
             return Ok();
            
         }
-
+[HttpGet("testAuth")]
+[Authorize] 
+public ActionResult<String> testAuth () {
+            return "Secret Key";
+           
+        }
      [HttpGet("badrequest")]
         public ActionResult<Product> GetBadRequest () {
             return BadRequest(new ApiResponse(400));

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
+using Infrastructure.Identity;
 
 namespace API {
     public class Startup {
@@ -23,6 +24,7 @@ namespace API {
 
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_conf.GetConnectionString("DefaultConnection")));
+             services.AddDbContext<AppIdentityDbContext>(x=>x.UseSqlite(_conf.GetConnectionString("IdentityConnection")));
               services.AddSingleton<IConnectionMultiplexer>(c => {
                 var configuration = 
                 ConfigurationOptions.Parse(_conf.GetConnectionString("Redis"),true);
@@ -32,7 +34,7 @@ namespace API {
       
       
             services.AddApplicationServices();
-    
+            services.AddIdentityServices(_conf);
  
             services.AddSwaggerDocumentation ();
             services.AddCors(
@@ -59,10 +61,11 @@ namespace API {
 
             app.UseRouting();
             app.UseCors("CorsPolicy");
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseStaticFiles();
             app.UseEndpoints(endpoints => {
-                endpoints.MapControllers ();
+                endpoints.MapControllers();
             });
         }
     }

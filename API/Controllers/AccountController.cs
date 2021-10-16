@@ -73,13 +73,16 @@ namespace API.Controllers {
             public async Task<ActionResult<AddressDto>> GetUserAddress () {
                 //  var email =HttpContext.User?.FindFirstValue(ClaimTypes.Email);
 
-                var user = await _userManger.FindByUserClaimsWithAddressAsync (HttpContext.User);
+                var user = await _userManger.FindByUserClaimsWithAddressAsync(HttpContext.User);
                 return _mapper.Map<Address, AddressDto> (user.Address);
             }
 
             [HttpPost ("register")]
             public async Task<ActionResult<UserDto>> Register (RegisterDto registerDto) {
-
+                if(CheckEmailExistsAsync(registerDto.Email).Result.Value){
+                    return BadRequest(new ApiValidationErrorResponse{
+                        Errors= new []{"Email address is use"}});
+                }
                 var user = new AppUser {
                     Email = registerDto.Email,
                     DisplayName = registerDto.DisplayName,
@@ -96,6 +99,7 @@ namespace API.Controllers {
                 };
             }
             [Authorize]
+      
             [HttpPut ("address")]
             public async Task<ActionResult<AddressDto>> UpdateUserAddress (AddressDto addressDto) {
                 var user = await _userManger.FindByUserClaimsWithAddressAsync (HttpContext.User);

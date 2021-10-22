@@ -8,6 +8,7 @@ import { ServerErrorComponent } from './server-error/server-error.component';
 import {ToastrModule} from 'ngx-toastr';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { ShardModule } from '../shard/shard.module';
 
 @NgModule({
   declarations: [
@@ -15,16 +16,18 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     TestErrorComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    SectionHeaderComponent,
-  ],
-  exports:[NavBarComponent ,
-  SectionHeaderComponent,
+    SectionHeaderComponent
 
+  ],
+  exports:[
+    NavBarComponent ,
+  SectionHeaderComponent
   ],
   imports: [
     CommonModule,
-    RouterModule,    BreadcrumbModule
-,
+    RouterModule,
+     BreadcrumbModule,
+     ShardModule,
     ToastrModule.forRoot({
       positionClass:'toast-bottom-right',
       preventDuplicates:true

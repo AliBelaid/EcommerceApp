@@ -5,25 +5,32 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PagingHeaderComponent } from './components/paging-header/paging-header.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { OrderTotalComponent } from './components/order-total/order-total.component';
-
+import { AccountModule } from '../account/account.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import { TextInputComponent } from './components/text-input/text-input.component';
 
 
 @NgModule({
   declarations: [
     PagingHeaderComponent,
     PagerComponent,
-    OrderTotalComponent
+    OrderTotalComponent,
+    TextInputComponent
   ],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    BsDropdownModule.forRoot()
   ], exports: [
     PaginationModule,
     PagingHeaderComponent,
     PagerComponent,
     CarouselModule,
-    OrderTotalComponent
-  ]
+    OrderTotalComponent,
+    ReactiveFormsModule,
+    BsDropdownModule
+  ,TextInputComponent]
 })
 export class ShardModule { }

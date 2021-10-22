@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IPagination } from './models/pagination';
 import { BasketService } from './basket/basket.service';
+import { AccountService } from './account/account.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,20 @@ export class AppComponent implements OnInit{
   title = 'SKiNet';
 
 
-  constructor(private basketServices:BasketService) {
+  constructor(private basketServices:BasketService,private accountService:AccountService) {
 
 
   }
   ngOnInit(): void {
+    this.loadUser();
+    this.loadBasket();
 
+  }
+
+
+
+
+loadBasket(){
   const basketId = localStorage.getItem('basket_id');
   if(basketId) {
     this.basketServices.GetBasket(basketId).subscribe(()=> {
@@ -26,10 +35,15 @@ export class AppComponent implements OnInit{
     },error=>{
       console.log(error);
     });
+}}
+loadUser(){
+  const token= localStorage.getItem('token');
+
+    this.accountService.loadCurrentUser(token).subscribe(()=>{
+ console.log('loaded user');
+    },error=>{
+      console.log(error);
+    });
   }
-
-
-  }
-
 
 }

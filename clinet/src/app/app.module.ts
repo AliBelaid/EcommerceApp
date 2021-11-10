@@ -1,3 +1,5 @@
+import { AccountModule } from './account/account.module';
+import { AuthGuard } from './core/guards/auth.guard';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptors';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { HomeModule } from './home/home.module';
@@ -26,11 +28,11 @@ import {CarouselModule}  from 'ngx-bootstrap/carousel';
     NgxSpinnerModule,
     HomeModule,
 
-
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
 ,{provide:HTTP_INTERCEPTORS,useClass: LoadingInterceptor,multi:true}
+
   ],
   bootstrap: [AppComponent],
   schemas: [

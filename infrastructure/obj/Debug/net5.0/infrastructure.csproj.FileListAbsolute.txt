@@ -15,3 +15,4 @@ C:\Users\Ali\Desktop\ecommercApp\skinet\Infrastructure\bin\Debug\net5.0\Infrastr
 C:\Users\Ali\Desktop\ecommercApp\skinet\Infrastructure\bin\Debug\net5.0\Core.dll
 C:\Users\Ali\Desktop\ecommercApp\skinet\Infrastructure\bin\Debug\net5.0\Core.pdb
 C:\Users\Ali\Desktop\ecommercApp\skinet\Infrastructure\obj\Debug\net5.0\Infrastructure.genruntimeconfig.cache
+C:\Users\Ali\Desktop\ecommercApp\skinet\Infrastructure\obj\Debug\net5.0\Infrastructure.csproj.CopyComplete

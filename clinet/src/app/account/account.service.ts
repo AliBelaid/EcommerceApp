@@ -35,38 +35,29 @@ export class AccountService {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSources.next(user);
-         }
-      })
-    )
+         }}))
   }
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'account/emailexists?email=' + email);
-
   }
 
-
   loadCurrentUser(token: string) {
-    if(token===null) {
+    if (token == null) {
       this.currentUserSources.next(null);
       return of(null);
     }
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', `Bearer ${token}`);
-    var user = (localStorage.getItem('token_id'));
-    return this.http.get<IUser>(this.baseUrl + 'account', { headers }).pipe(
+    return this.http.get<IUser>(this.baseUrl + 'account', {headers}).pipe(
       map((user: IUser) => {
         if (user) {
           localStorage.setItem('token', user.token);
           this.currentUserSources.next(user);
-        }
-      }
-      ));
+        } }))
   }
-
   logout(){
-
     this.currentUserSources.next(null);
-    localStorage.setItem('token',null);
+    localStorage.removeItem('token');
      this.route.navigateByUrl('/account/login');
   }
 

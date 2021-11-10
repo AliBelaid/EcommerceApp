@@ -28,7 +28,6 @@ export class ErrorInterceptor implements HttpInterceptor {
              }else {
             this.toast.error(error.error.message,error.error.statusCode);
               }
-            this.toast.error(error.error.message,error.error.statusCode);
            }
            if(error.status ==401) {
             this.toast.error(error.error.message,error.error.statusCode);

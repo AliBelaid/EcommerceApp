@@ -15,7 +15,7 @@ namespace Infrastructure.Data {
         }
 
         async Task<T> IGenericRepository<T>.GetByIdAsync (int id) {
-            return await _ctx.Set<T> ().FindAsync (id);
+            return await _ctx.Set<T>().FindAsync(id);
 
         }
 
@@ -35,6 +35,23 @@ namespace Infrastructure.Data {
 
         public async Task<int> CountAsync (ISpecifications<T> spec) {
             return await applaySpecification (spec).CountAsync ();
+        }
+
+        public void Add(T entity)
+        {
+           _ctx.Set<T>().Add(entity);
+        }
+
+        public void Update(T entity)
+        {
+        _ctx.Set<T>().Attach(entity);
+        _ctx.Entry(entity).State = EntityState.Modified;
+
+        }
+
+        public void Delete(T entity)
+        {
+            _ctx.Set<T>().Remove(entity);
         }
     }
 }

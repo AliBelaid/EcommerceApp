@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,20 +10,26 @@ import { AccountModule } from '../account/account.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { TextInputComponent } from './components/text-input/text-input.component';
-
+import { CdkStep, CdkStepperModule} from '@angular/cdk/stepper';
+import { StepperComponent } from './components/stepper/stepper.component';
+import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
 
 @NgModule({
   declarations: [
     PagingHeaderComponent,
     PagerComponent,
     OrderTotalComponent,
-    TextInputComponent
+    TextInputComponent,
+    StepperComponent,
+    BasketSummaryComponent
   ],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
     CarouselModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    CdkStepperModule,
+    RouterModule
   ], exports: [
     PaginationModule,
     PagingHeaderComponent,
@@ -31,6 +38,11 @@ import { TextInputComponent } from './components/text-input/text-input.component
     OrderTotalComponent,
     ReactiveFormsModule,
     BsDropdownModule
-  ,TextInputComponent]
+  ,TextInputComponent
+,StepperComponent,
+BasketSummaryComponent
+,
+CdkStep,
+CdkStepperModule]
 })
 export class ShardModule { }

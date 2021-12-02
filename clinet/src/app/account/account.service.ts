@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AsyncValidator } from '@angular/forms';
+import { IAddress } from '../models/address';
 
 @Injectable({
   providedIn: 'root'
@@ -61,5 +62,10 @@ export class AccountService {
      this.route.navigateByUrl('/account/login');
   }
 
-
+getUserAddress(){
+  return this.http.get<IAddress>(this.baseUrl+'account/address');
+}
+updateUserAddress(address:IAddress){
+  return this.http.put(this.baseUrl+'account/address',address);
+}
 }

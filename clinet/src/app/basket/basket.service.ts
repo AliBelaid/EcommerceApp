@@ -5,6 +5,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IProduct } from '../models/product';
+import { IDelivaryMethod } from '../models/delivery';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,21 @@ export class BasketService implements OnInit {
   private basketSource = new BehaviorSubject<IBasket>(null);
   basket$ = this.basketSource.asObservable();
   private basketTotalSource = new BehaviorSubject<IBasketTotal>(null);
-
+   shipping =0 ;
   basketTotal$ = this.basketTotalSource.asObservable();
   constructor(private http: HttpClient  ) { }
   ngOnInit(): void {
 
 
   }
+
+  setShippingPrice(deliveryMethod:IDelivaryMethod) {
+    this.shipping = deliveryMethod.price;
+    this.calculateTotals();
+  }
 private calculateTotals(){
 const basket= this.getCurrentBasketValue();
-const shipping =0;
+const shipping =this.shipping;
 
   const subTotal = basket.items.reduce((a,b)=>
   (b.price*b.quantity) +a,0);
@@ -91,7 +97,9 @@ this.SetBasket(basket);
             this.SetBasket(basket);
           }else {
             this.DeleteBasket(basket.id);
-  }}}
+  }
+  this.calculateTotals();
+}}
 
 
   addOrUpdateItem(items: IBasketItem[], itemToAdd: IBasketItem, quantity: number): IBasketItem[] {
@@ -126,14 +134,19 @@ private CreateBasket(): IBasket {
 
 
   }
+  deleteLocalBasket(id:string){
+    this.basketSource.next(null);
+    this.basketTotalSource.next(null);
+    localStorage.removeItem('basket_id');
 
+  }
 
   DeleteBasket(BasketId: string) {
   this.http.delete(this.baseUrl+'basket?id='+ BasketId).subscribe(()=>{
-    localStorage.removeItem('basket_id');
+
    this.basketSource.next(null);
    this.basketTotalSource.next(null);
-
+   localStorage.removeItem('basket_id');
 },error=> {
 console.log(error);
 });}

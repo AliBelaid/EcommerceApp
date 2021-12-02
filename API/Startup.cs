@@ -36,7 +36,7 @@ namespace API {
             services.AddApplicationServices();
             services.AddIdentityServices(_conf);
  
-            services.AddSwaggerDocumentation ();
+            services.AddSwaggerDocumentation();
             services.AddCors(
                 opt => {
                     opt.AddPolicy("CorsPolicy",policy=> {

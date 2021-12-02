@@ -1,4 +1,4 @@
-declare module IAddress {
+
 
   export interface IAddress {
       firstName: string;
@@ -9,4 +9,4 @@ declare module IAddress {
       zipCode: string;
   }
 
-}
+

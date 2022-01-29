@@ -12,13 +12,13 @@ namespace API.Extensions {
     public static class UserMangerExtensions {
         public static async Task<AppUser> FindByUserClaimsWithAddressAsync (this UserManager<AppUser> input, ClaimsPrincipal user) {
             var email = user?.FindFirstValue (ClaimTypes.Email);
-            return await input.Users.Include (p => p.Address).SingleOrDefaultAsync (x => x.Email == email);
+            return await input.Users.Include(p => p.Address).Include(p => p.Photos).SingleOrDefaultAsync (x => x.Email == email);
 
         }
 
         public static async Task<AppUser> FindByEmailFromClaimsPrinciple(this UserManager<AppUser> input, ClaimsPrincipal user) {
             var email = user?.FindFirstValue (ClaimTypes.Email);
-            return await input.Users.SingleOrDefaultAsync(x => x.Email == email);
+            return await input.Users.Include(p => p.Photos).SingleOrDefaultAsync(x => x.Email == email);
 
         }
     }

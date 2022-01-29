@@ -10,43 +10,49 @@ using API.Extensions;
 using AutoMapper;
 using Core.Entities.identity;
 using Core.interfaces;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace API.Controllers {
 
         public class AccountController : BaseController {
             private readonly UserManager<AppUser> _userManger;
-            private readonly SignInManager<AppUser> _signInManager;
+        private readonly AppIdentityDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
             private readonly ITokenService _tokenService;
             private readonly IMapper _mapper;
 
-            public AccountController (UserManager<AppUser> userManger,
+            public AccountController (UserManager<AppUser> userManger,AppIdentityDbContext context,
                 SignInManager<AppUser> signInManager,
                 ITokenService tokenService,
                 IMapper mapper) {
                 _tokenService = tokenService;
                 _mapper = mapper;
                 _userManger = userManger;
-
-                _signInManager = signInManager;
+            _context = context;
+            _signInManager = signInManager;
             }
 
             [HttpPost ("login")]
             public async Task<ActionResult<UserDto>> Login (LoginDto loginDto) {
-                var user = await _userManger.FindByEmailAsync (loginDto.Email);
+            //    var user = await _userManger.include(p=>p.photos).FindByEmailAsync(loginDto.Email);
+                 var user =  await _context.Users.Include(p=>p.Photos).FirstOrDefaultAsync(x=>x.Email==loginDto.Email);
+               
                 if (user == null) {
                     return Unauthorized (new ApiResponse (401));
                 }
                 var result = await _signInManager.CheckPasswordSignInAsync (user, loginDto.Password, false);
-                if (!result.Succeeded) return Unauthorized (new ApiResponse (401));
+                if (!result.Succeeded) return Unauthorized(new ApiResponse (401));
 
                 return new UserDto {
-                    Email = user.Email,
+                        Email = user.Email,
                         Token = _tokenService.CrateToken (user),
-                        DisplayName = user.DisplayName
+                        DisplayName = user.DisplayName ,
+                        PhotoUrl = user.Photos.FirstOrDefault(i=>i.IsMain)?.Url
                 };
             }
 
@@ -55,11 +61,15 @@ namespace API.Controllers {
             public async Task<ActionResult<UserDto>> GetCurrentUser () {
 
                 //   var emailt= HttpContext.User?.Claims?.FirstOrDefault(i=>i.Type ==ClaimTypes.Email);
-                var user = await _userManger.FindByEmailFromClaimsPrinciple (HttpContext.User);
+         //       var user = await _userManger.FindByEmailFromClaimsPrinciple (HttpContext.User);
+
+              var user = await _userManger.FindByUserClaimsWithAddressAsync(HttpContext.User);
+
                 return new UserDto {
                     Email = user.Email,
                         Token = _tokenService.CrateToken (user),
-                        DisplayName = user.DisplayName
+                        DisplayName = user.DisplayName,
+                          PhotoUrl = user.Photos.FirstOrDefault(i=>i.IsMain)?.Url
                 };
             }
 
@@ -109,5 +119,5 @@ namespace API.Controllers {
                 return BadRequest ("Problem updating the user");
 
             }
-
+    
         }}

@@ -22,7 +22,11 @@
   </div>
 
   <div class="col-4">
-    <app-order-total></app-order-total>
+    <app-order-total
+    [subTotal] ="(basketTotal$  | async).subTotal"
+    [total] ="(basketTotal$  | async).total"
+    [shipping] ="(basketTotal$  | async).shipping"
+    ></app-order-total>
   </div>
 </div>
 

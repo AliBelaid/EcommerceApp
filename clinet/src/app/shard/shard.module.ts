@@ -6,13 +6,13 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { PagingHeaderComponent } from './components/paging-header/paging-header.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { OrderTotalComponent } from './components/order-total/order-total.component';
-import { AccountModule } from '../account/account.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import { TextInputComponent } from './components/text-input/text-input.component';
 import { CdkStep, CdkStepperModule} from '@angular/cdk/stepper';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { BasketSummaryComponent } from './components/basket-summary/basket-summa
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
     CdkStepperModule,
-    RouterModule
+    RouterModule,
+    FileUploadModule
   ], exports: [
     PaginationModule,
     PagingHeaderComponent,
@@ -41,7 +42,7 @@ import { BasketSummaryComponent } from './components/basket-summary/basket-summa
   ,TextInputComponent
 ,StepperComponent,
 BasketSummaryComponent
-,
+,FileUploadModule,
 CdkStep,
 CdkStepperModule]
 })

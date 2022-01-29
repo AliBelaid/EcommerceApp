@@ -31,20 +31,25 @@ namespace API {
                 return ConnectionMultiplexer.Connect(configuration);
             }
                 );
-      
-      
-            services.AddApplicationServices();
+    //   services.AddControllersWithViews()
+	// 	.AddNewtonsoftJson(options =>
+	// 	options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+	// );
+    //   services.AddControllers().AddJsonOptions(option => { option.JsonSerializerOptions.PropertyNamingPolicy = null; option.JsonSerializerOptions.MaxDepth = 256; });
+            services.AddApplicationServices(_conf);
             services.AddIdentityServices(_conf);
- 
+  
             services.AddSwaggerDocumentation();
             services.AddCors(
                 opt => {
                     opt.AddPolicy("CorsPolicy",policy=> {
-                        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200");
+                        policy.AllowAnyHeader().AllowCredentials().AllowAnyMethod().WithOrigins("https://localhost:4200");
                         
                     });
                 }
             );
+//             services.AddControllers().AddNewtonsoftJson(x => 
+//  x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,3 +75,4 @@ namespace API {
         }
     }
 }
+

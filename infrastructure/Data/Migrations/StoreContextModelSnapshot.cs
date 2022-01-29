@@ -16,6 +16,28 @@ namespace Infrastructure.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.9");
 
+            modelBuilder.Entity("Core.Entities.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductWebSiteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("alt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("src")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductWebSiteId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("Core.Entities.OrderAggregate.DelivaryMethod", b =>
                 {
                     b.Property<int>("Id")
@@ -51,8 +73,8 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int?>("DelivaryMethodId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTimeOffset>("OrderDate")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("OrderDate")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("PaymentIntentId")
                         .HasColumnType("TEXT");
@@ -159,13 +181,213 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("ProductType");
                 });
 
+            modelBuilder.Entity("Core.Entities.ProductWebSite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("brand")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("category")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("discount")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("news")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("price")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("sale")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("stock")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("tags")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductsWebSite");
+                });
+
+            modelBuilder.Entity("Core.Entities.hr.Departments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DepartmentName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("Core.Entities.hr.Designation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DepartmentsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DesignationName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentsId");
+
+                    b.ToTable("Designation");
+                });
+
+            modelBuilder.Entity("Core.Entities.hr.Employeeleaves", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("designation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("employeeName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("from")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("leaveType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("noofDays")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("reason")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("remainleaves")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("status")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("to")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Employeeleaves");
+                });
+
+            modelBuilder.Entity("Core.Entities.hr.Employees", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DepartmentsId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("DesignationId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("company")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("employeeId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("firstname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("joindate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("lastname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("mobile")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("password")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("phone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("role")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("username")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentsId");
+
+                    b.HasIndex("DesignationId");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("Core.Entities.hr.Holidays", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("day")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("holidaydate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("title")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Holidays");
+                });
+
+            modelBuilder.Entity("Core.Entities.Image", b =>
+                {
+                    b.HasOne("Core.Entities.ProductWebSite", "ProductWebSite")
+                        .WithMany("images")
+                        .HasForeignKey("ProductWebSiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductWebSite");
+                });
+
             modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
                 {
                     b.HasOne("Core.Entities.OrderAggregate.DelivaryMethod", "DelivaryMethod")
                         .WithMany()
                         .HasForeignKey("DelivaryMethodId");
 
-                    b.OwnsOne("clinet.src.app.core.OrderAggregate.Address", "ShipAddress", b1 =>
+                    b.OwnsOne("Core.Entities.OrderAggregate.Address", "ShipAddress", b1 =>
                         {
                             b1.Property<int>("OrderId")
                                 .HasColumnType("INTEGER");
@@ -213,14 +435,14 @@ namespace Infrastructure.Data.Migrations
                             b1.Property<int>("OrderItemId")
                                 .HasColumnType("INTEGER");
 
-                            b1.Property<int>("PictureUrl")
-                                .HasColumnType("INTEGER");
+                            b1.Property<string>("PictureUrl")
+                                .HasColumnType("TEXT");
 
                             b1.Property<int>("ProductItemId")
                                 .HasColumnType("INTEGER");
 
-                            b1.Property<int>("ProductName")
-                                .HasColumnType("INTEGER");
+                            b1.Property<string>("ProductName")
+                                .HasColumnType("TEXT");
 
                             b1.HasKey("OrderItemId");
 
@@ -252,9 +474,44 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("ProductType");
                 });
 
+            modelBuilder.Entity("Core.Entities.hr.Designation", b =>
+                {
+                    b.HasOne("Core.Entities.hr.Departments", "Departments")
+                        .WithMany()
+                        .HasForeignKey("DepartmentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Departments");
+                });
+
+            modelBuilder.Entity("Core.Entities.hr.Employees", b =>
+                {
+                    b.HasOne("Core.Entities.hr.Departments", "Departments")
+                        .WithMany()
+                        .HasForeignKey("DepartmentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Entities.hr.Designation", "Designation")
+                        .WithMany()
+                        .HasForeignKey("DesignationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Departments");
+
+                    b.Navigation("Designation");
+                });
+
             modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
                 {
                     b.Navigation("OrderItems");
+                });
+
+            modelBuilder.Entity("Core.Entities.ProductWebSite", b =>
+                {
+                    b.Navigation("images");
                 });
 #pragma warning restore 612, 618
         }

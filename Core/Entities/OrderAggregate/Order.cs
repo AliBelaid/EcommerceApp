@@ -26,7 +26,7 @@ namespace Core.Entities.OrderAggregate
             Subtotal = subtotal;
          
         }
-
+       
         public string BuyerEmail { get; set; }
 
        public DateTimeOffset OrderDate { get; set; } = DateTimeOffset.Now;

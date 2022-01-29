@@ -23,8 +23,7 @@ export class AccountService {
     return this.http.post<IUser>(this.baseUrl + 'account/login', value).pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('token', user.token);
-          this.currentUserSources.next(user);
+          this.setCurrentUser(user);
         }
       })
     )
@@ -34,9 +33,15 @@ export class AccountService {
     return this.http.post<IUser>(this.baseUrl + 'account/register', value).pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('token', user.token);
-          this.currentUserSources.next(user);
-         }}))
+          this.setCurrentUser(user);
+
+        }
+      }))
+  }
+
+  setCurrentUser(user: IUser) {
+    localStorage.setItem('token', user.token);
+    this.currentUserSources.next(user);
   }
   checkEmailExists(email: string) {
     return this.http.get(this.baseUrl + 'account/emailexists?email=' + email);
@@ -49,23 +54,23 @@ export class AccountService {
     }
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', `Bearer ${token}`);
-    return this.http.get<IUser>(this.baseUrl + 'account', {headers}).pipe(
+    return this.http.get<IUser>(this.baseUrl + 'account', { headers }).pipe(
       map((user: IUser) => {
         if (user) {
-          localStorage.setItem('token', user.token);
-          this.currentUserSources.next(user);
-        } }))
+          this.setCurrentUser(user);
+        }
+      }))
   }
-  logout(){
+  logout() {
     this.currentUserSources.next(null);
     localStorage.removeItem('token');
-     this.route.navigateByUrl('/account/login');
+    this.route.navigateByUrl('/account/login');
   }
 
-getUserAddress(){
-  return this.http.get<IAddress>(this.baseUrl+'account/address');
-}
-updateUserAddress(address:IAddress){
-  return this.http.put(this.baseUrl+'account/address',address);
-}
+  getUserAddress() {
+    return this.http.get<IAddress>(this.baseUrl + 'account/address');
+  }
+  updateUserAddress(address: IAddress) {
+    return this.http.put(this.baseUrl + 'account/address', address);
+  }
 }

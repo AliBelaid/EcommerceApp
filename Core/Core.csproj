@@ -5,7 +5,8 @@
   </PropertyGroup> 
 
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.9" />
   </ItemGroup>
-
+ 
 </Project>

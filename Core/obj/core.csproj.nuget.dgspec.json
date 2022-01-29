@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\Core.csproj": {}
+    "C:\\Users\\Ali\\Desktop\\ecommercApp\\not wrking\\skinet\\Core\\Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\Core.csproj": {
+    "C:\\Users\\Ali\\Desktop\\ecommercApp\\not wrking\\skinet\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Ali\\Desktop\\ecommercApp\\not wrking\\skinet\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\not wrking\\skinet\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Ali\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\skinet\\Core\\obj\\",
+        "outputPath": "C:\\Users\\Ali\\Desktop\\ecommercApp\\not wrking\\skinet\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -47,6 +47,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "CloudinaryDotNet": {
+              "target": "Package",
+              "version": "[1.17.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.9, )"
@@ -67,7 +71,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

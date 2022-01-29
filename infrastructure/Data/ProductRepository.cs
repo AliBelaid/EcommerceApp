@@ -14,12 +14,12 @@ namespace Infrastructure.Data
 
     
 
-        public async  Task<Product> GetProductByIdAsync(int id) {
-        return await _ctx.Products.Include(i=>i.ProductBrand).Include(i=>i.ProductType).SingleOrDefaultAsync(i=>i.Id==id);
+        public async  Task<ProductWebSite> GetProductByIdAsync(int id) {
+        return await _ctx.ProductsWebSite.Include(i=>i.images).Include(i=>i.tags).SingleOrDefaultAsync(i=>i.Id==id);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync() {
-        return await _ctx.Products.Include(i=>i.ProductBrand).Include(i=>i.ProductType).ToListAsync();
+        public async Task<IReadOnlyList<ProductWebSite>> GetProductsAsync() {
+        return await _ctx.ProductsWebSite.Include(i=>i.images).Include(i=>i.tags).ToListAsync();
         }
 
      public async Task<IReadOnlyList<ProductType>> GetProductTypesAsync()

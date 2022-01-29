@@ -26,3 +26,4 @@ export interface IOrderToCreate {
   deliveryMethodId: number;
   shipToAddress: IAddress;
 }
+

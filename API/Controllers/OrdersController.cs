@@ -20,29 +20,32 @@ namespace API.Controllers {
     public class OrdersController : BaseController {
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
-
         public OrdersController (IOrderService orderService, IMapper mapper) {
             _orderService = orderService;
             _mapper = mapper;
+
+  
         }
 
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder (OrderDto orderDto) {
             var email = HttpContext.User.RetrieveEmailFormPrincipal ();
             var address = _mapper.Map<AddressDto, Address> (orderDto.shipToAddress);
-            var order = await _orderService.CreateOrderAsync (email, orderDto.deliveryMethodId, orderDto.basketId, address);
+            var order = await _orderService.CreateOrderAsync(email, orderDto.deliveryMethodId, orderDto.basketId, address);
             if (order == null) return BadRequest (new ApiResponse (400, "Problam createing order"));
             return Ok (order);
 
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<OrderToReturnDto>>> GetOrdersForUser () {
+        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser() {
+             var email = HttpContext.User.RetrieveEmailFormPrincipal();
+            IReadOnlyList<Order> orders = await _orderService.GetOrderForUserAsync(email);
+           // return Ok (_mapper.Map<IReadOnlyList<Order>,IReadOnlyList<OrderToReturnDto>>(order));
+ 
+           var data = _mapper.Map<IReadOnlyList<Order>,IReadOnlyList<OrderToReturnDto>>(orders);
 
-            var email = HttpContext.User.RetrieveEmailFormPrincipal ();
-            var order = await _orderService.GetOrderForUserAsync (email);
-            return Ok (_mapper.Map<IReadOnlyList<Order>,IReadOnlyList<OrderToReturnDto>>(order));
-
+     return Ok(data);
         }
 
         [HttpGet("{id}")]
@@ -52,7 +55,11 @@ namespace API.Controllers {
             var order = await _orderService.GetOrderByIdAsync(id,email);
 
             if(order==null) return NotFound(new ApiResponse(404));
-            return Ok (_mapper.Map<Order,OrderToReturnDto>(order));
+         //   return Ok(order);
+          //  return Ok  (_mapper.Map<Order,OrderToReturnDto>(order));
+               var data = _mapper.Map<Order,OrderToReturnDto>(order);
+
+     return Ok(data);
         }
 
     [HttpGet("deliveryMethods")]

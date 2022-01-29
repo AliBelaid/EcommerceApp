@@ -54,6 +54,7 @@ const shipping =this.shipping;
       (response: IBasket) => {
         this.basketSource.next(response)
         console.log(response);
+        this.calculateTotals();
       }, error => {
         console.log(error);
       })
@@ -68,7 +69,7 @@ const shipping =this.shipping;
     const basket = this.getCurrentBasketValue() ?? this.CreateBasket();
     basket.items = this.addOrUpdateItem(basket.items, itemToAdd, quantity);
     this.SetBasket(basket);
-    this.calculateTotals();
+
   }
   incrementItemQuantity(item:IBasketItem){
 const basket = this.getCurrentBasketValue();

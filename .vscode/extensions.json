@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "johnpapa.angular2"
+        "johnpapa.angular2",
+        "tintoy.msbuild-project-tools"
     ]
 }

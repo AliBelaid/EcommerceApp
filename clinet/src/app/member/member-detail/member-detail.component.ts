@@ -21,7 +21,10 @@ galleryImages: NgxGalleryImage[];
   ngOnInit(): void {
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe((resp)=> {
       this.member = resp;
-      this.galleryImages = this.getImages() ;
+      if(this.member?.photos.length> 0) {
+        this.galleryImages = this.getImages() ;
+      }
+
     },error=> {
       console.log(error);
     });
@@ -41,6 +44,7 @@ galleryImages: NgxGalleryImage[];
 
   getImages(): NgxGalleryImage[] {
     const imageUrls = [];
+
     for (const photo of this.member.photos) {
       imageUrls.push({
         small: photo?.url,

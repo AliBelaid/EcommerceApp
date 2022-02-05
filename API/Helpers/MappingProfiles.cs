@@ -39,6 +39,7 @@ namespace API.Helpers {
                   .ForMember(t=> t.Age, y=>y.MapFrom(y=>y.DateOfBirth.CalculateAge())); 
                     CreateMap<Photo,PhotoDto> ().ReverseMap(); 
                 CreateMap<MemberUpdateDto,AppUser>();
+                  CreateMap<RegisterDto,AppUser>();
         }
     }
 }

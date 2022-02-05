@@ -13,6 +13,10 @@ import { CdkStep, CdkStepperModule} from '@angular/cdk/stepper';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { BasketSummaryComponent } from './components/basket-summary/basket-summary.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { DateInputComponent } from './components/date-input/date-input.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   declarations: [
@@ -21,17 +25,24 @@ import { FileUploadModule } from 'ng2-file-upload';
     OrderTotalComponent,
     TextInputComponent,
     StepperComponent,
-    BasketSummaryComponent
+    BasketSummaryComponent,
+    DateInputComponent,
+
   ],
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
     CarouselModule.forRoot(),
     BsDropdownModule.forRoot(),
+    ReactiveFormsModule,
     CdkStepperModule,
     RouterModule,
-    FileUploadModule
+    FileUploadModule,
+    BsDatepickerModule.forRoot(),
+    ButtonsModule,
+    TimeagoModule.forRoot()
   ], exports: [
+
     PaginationModule,
     PagingHeaderComponent,
     PagerComponent,
@@ -44,6 +55,10 @@ import { FileUploadModule } from 'ng2-file-upload';
 BasketSummaryComponent
 ,FileUploadModule,
 CdkStep,
-CdkStepperModule]
+CdkStepperModule,
+BsDatepickerModule,
+DateInputComponent,
+ButtonsModule ,
+TimeagoModule]
 })
 export class ShardModule { }

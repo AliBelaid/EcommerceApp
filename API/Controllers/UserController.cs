@@ -9,11 +9,13 @@ using API.Errors;
 using API.Extensions;
 using AutoMapper;
 using Core.Entities.identity;
+using Core.Entities.identity.Extensions;
 using Core.interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace API.Controllers {
@@ -35,12 +37,20 @@ namespace API.Controllers {
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Member>>> GetUsers () {
+        public async Task<ActionResult<IEnumerable<Member>>> GetUsers ([FromQuery]UserParems userparems ) {
 
             //   var emailt= HttpContext.User?.Claims?.FirstOrDefault(i=>i.Type ==ClaimTypes.Email);
-            var users = await _userProduct.GetUsersAsync ();
-            var send = _mapper.Map<IEnumerable<Member>> (users);
-            return Ok (send);
+          var user = await _userManger.FindByUserClaimsWithAddressAsync (HttpContext.User);
+            userparems.CurrentUserName =  user.DisplayName ;
+            if(string.IsNullOrEmpty(userparems.Gender)) {
+                userparems.Gender = user.Gender=="male"? "female": "male" ;
+            }
+            var users =  await _userProduct.GetMembersAsync(userparems);
+           
+           // var send = _mapper.ProjectTo<Member> (users);
+            Response.AddPaginationHeader(users.PageSize,users.CurrentPage,users.TotalCount,users.TotalPages) ;
+               return Ok(users);
+            
         }
 
         // [HttpGet ("{id}")]

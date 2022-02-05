@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     NgxSpinnerModule,
     HomeModule,
+    ReactiveFormsModule,
 
   ],
   providers: [

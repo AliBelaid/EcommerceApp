@@ -26,6 +26,7 @@ namespace Infrastructure.Services {
         {
            var claims = new List<Claim> {
               new Claim(ClaimTypes.Email ,user.Email),
+                 new Claim(ClaimTypes.NameIdentifier ,user.Id.ToString()),
               new Claim(ClaimTypes.GivenName ,user.DisplayName),
            };
        var cards = new SigningCredentials(_key,SecurityAlgorithms.HmacSha512Signature);

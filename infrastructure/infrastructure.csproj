@@ -13,8 +13,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.9">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
+
     </PackageReference>
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.13.1" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.50" />

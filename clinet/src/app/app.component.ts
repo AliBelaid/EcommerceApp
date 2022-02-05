@@ -19,8 +19,9 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.loadBasket();
     this.loadUser();
+    this.loadBasket();
+
 
 
   }
@@ -39,9 +40,7 @@ loadBasket(){
 }
 loadUser(){
   const token= localStorage.getItem('token');
-
     this.accountService.loadCurrentUser(token).subscribe(()=>{
-
  console.log('loaded user');
     },error=>{
       console.log(error);

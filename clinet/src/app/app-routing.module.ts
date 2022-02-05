@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'checkout'  , loadChildren:()=>import('./checkout/checkout.module').then(mod=>mod.CheckoutModule),data:{breadcrumb: 'checkout'}  ,canActivate:[AuthGuard]},
   { path: 'order'  , loadChildren:()=>import('./order/order.module').then(mod=>mod.OrderModule),data:{breadcrumb: 'order'}  ,canActivate:[AuthGuard]},
   { path: 'account', loadChildren:()=>import('./account/account.module').then(mod=>mod.AccountModule),data:{breadcrumb: {skip:true}}},
-    {path:'member', loadChildren:()=> import('./member/member.module').then(mod=>mod.MemberModule)},
+    {path:'member', loadChildren:()=> import('./member/member.module').then(mod=>mod.MemberModule),data:{breadcrumb: 'Member'}  ,canActivate:[AuthGuard]},
 
 
  {path:'**',redirectTo: 'not-found', pathMatch:'full'}

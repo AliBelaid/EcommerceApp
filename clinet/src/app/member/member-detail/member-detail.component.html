@@ -6,11 +6,11 @@
       <div class="card-body">
         <div>
           <strong>Location:</strong>
-          <p>{{member.city}} , {{member.city}} , {{member.address.street}}</p>
+          <p>{{member?.city}} , {{member?.country}} , {{member.address?.street}}</p>
         </div>
         <div>
           <strong>Last Active:</strong>
-          <p>{{member.lastActive}}</p>
+          <p>{{member.lastActive | timeago}}</p>
         </div>
         <div>
           <strong>Age:</strong>
@@ -18,7 +18,7 @@
         </div>
         <div>
           <strong>Member Since:</strong>
-          <p>{{member.created}} </p>
+          <p>{{member.created | date}} </p>
         </div>
       </div>
       <div class="card-footer">
@@ -39,16 +39,19 @@
     </tab>
     <tab heading='Interests '>
       <h4>Interests</h4>
-      <p>{{member.interests}}</p>
+      <p>{{member?.interests}}</p>
     </tab>
     <tab heading='Messages '>
       <h4>Messages</h4>
-      <p>{{member.address.zipCode}}</p>
+      <p>{{member.address?.zipCode}}</p>
     </tab>
     <tab heading='Photos '>
       <div style="width: auto;height: inherit;" class="m-3 p-4">
-        <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"
-         ></ngx-gallery>
+        <ng-container *ngIf="member.photos" >
+          <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"
+          ></ngx-gallery>
+        </ng-container>
+        <h5 *ngIf="(member.photos ===null) || (member.photos.length === 0)">There not any photo </h5>
       </div>
    </tab>
   </tabset>

@@ -13,6 +13,8 @@ namespace API.Extensions
         public static string RetrieveEmailFormPrincipal(this ClaimsPrincipal user) {
 return    user?.Claims.FirstOrDefault(i =>i.Type==ClaimTypes.Email)?.Value;
         }
-        
+           public static string RetrieveUseeByIdPrincipal(this ClaimsPrincipal user) {
+             return    user?.Claims.FirstOrDefault(i =>i.Type==ClaimTypes.NameIdentifier)?.Value;
+        }
     }
 }

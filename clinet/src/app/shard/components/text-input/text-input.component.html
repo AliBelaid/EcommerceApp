@@ -1,8 +1,11 @@
 <div class="form-label-group">
-  <input formControlName="email" [type]="type" (input)="onChange($event.target.value)" (blur)="OnTouched()" #input
+  <input
+  [formControl] ="controlDir.control"
+
+  [type]="type" (input)="onChange($event.target.value)" (blur)="OnTouched()" #input
     [ngClass]="(
   controlDir && controlDir.control
-  &&  controlDir.control.touched) ? !controlDir.control.valid ? 'is-invalid':'is-valid': null" id="{{label}}"
+  &&  controlDir.control.touched) ? !controlDir.control.valid ? 'is-invalid':'is-valid': null"
     class="form-control" placeholder="{{label}}">
 <div *ngIf="controlDir && controlDir.control &&
 controlDir.control.status==='PENDING'" class="fa fa-spinner fa-spin loader">
@@ -23,4 +26,10 @@ controlDir.control.status==='PENDING'" class="fa fa-spinner fa-spin loader">
   &&  controlDir.control.dirty" >
   <span class="text-danger" *ngIf="controlDir.control.errors?.emailExists">
     Email address is us </span>
+  </div>
+
+  <div class="invalid-feedback d-block" *ngIf="controlDir && controlDir.control && !controlDir.control.valid
+  &&  controlDir.control.dirty" >
+  <span class="text-danger" *ngIf="controlDir.control.errors?.matching">
+    The Password not the same confirm password  </span>
   </div>

@@ -36,6 +36,7 @@ if(this.editForm.dirty){
 loadMember(){
   this.memberService.getMember(this.user.displayName).subscribe(member => {
      this.member = member;
+
   });
 }
 

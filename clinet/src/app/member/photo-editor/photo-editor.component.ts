@@ -1,3 +1,4 @@
+import { Photo } from './../../models/photo';
 import { MemberService } from './../member.service';
 import { IUser } from './../../models/user';
 import { AccountService } from './../../account/account.service';
@@ -6,7 +7,7 @@ import { Member } from './../../models/member';
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { FileWatcherEventKind } from 'typescript';
-import { Photo } from 'src/app/models/photo';
+
 
 @Component({
   selector: 'app-photo-editor',
@@ -46,8 +47,13 @@ this.uploader.onAfterAddingAll = (file) => {
 }
 this.uploader.onSuccessItem = (item ,response ,status , headers)=> {
   if(response) {
-    const photo  = JSON.parse(response);
+    const photo:Photo  = JSON.parse(response);
     this.member.photos.push(photo);
+    if(photo.isMain) {
+      this.user.photoUrl = photo.url ;
+      this.member.photoUrl = photo.url;
+      this.accountService.setCurrentUser(this.user);
+    }
   }
 }
 }

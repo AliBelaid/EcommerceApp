@@ -1,3 +1,4 @@
+import { ShardModule } from './../shard/shard.module';
 import { NgxGalleryModule } from 'ngx-gallery-9';
 
 import { MemberCardComponent } from './member-card/member-card.component';
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { PhotoEditorComponent } from './photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 
-
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     MemberRoutingModule, TabsModule.forRoot(),
     NgxGalleryModule,
     FormsModule,
-    FileUploadModule
+    FileUploadModule ,
+     ShardModule
     ]
 
 })

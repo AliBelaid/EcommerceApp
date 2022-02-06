@@ -1,3 +1,4 @@
+import { ListsComponent } from './../lists/lists.component';
 import { ShardModule } from './../shard/shard.module';
 import { NgxGalleryModule } from 'ngx-gallery-9';
 
@@ -22,7 +23,7 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker'
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
-
+   ListsComponent
   ],
   imports: [
     CommonModule,

@@ -18,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
 
-
   ],
   imports: [
     CoreModule,
@@ -30,10 +29,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgxSpinnerModule,
     HomeModule,
     ReactiveFormsModule,
-
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
+ {provide:HTTP_INTERCEPTORS,useClass: ErrorInterceptor,multi:true}
 ,{provide:HTTP_INTERCEPTORS,useClass: LoadingInterceptor,multi:true}
 ,{provide:HTTP_INTERCEPTORS,useClass: JwtInterceptor,multi:true}
   ],

@@ -8,7 +8,8 @@
      [routerLinkActiveOptions]="{exact:true}"  >Home</a>
 
     <a class="p-2"  routerLink="/shop" routerLinkActive="active"  >Shop</a>
-    <a class="p-2"  routerLink="/member"   >Members</a>
+    <a class="p-2"  routerLink="/DatingAp/member"   >Members</a>
+    <a class="p-2"  routerLink="/DatingAp/list"   >Lists</a>
     <a class="p-2"  routerLink="/shop/id" >Shop&id</a>
     <a class="p-2"  routerLink="/test-error" >Error</a>
   </nav>
@@ -35,7 +36,7 @@
           </strong>
           </a>
           <div class="dropdown-menu dropdown-menu-right" style="cursor:pointer" *dropdownMenu>
-            <a   class="dropdown-item d-flex align-items-center py-2"  [routerLink]="['/member/edit']">
+            <a   class="dropdown-item d-flex align-items-center py-2"  [routerLink]="['/DatingAp/member/edit']">
               <i class="fa fa-shopping-cart mr-3"></i>Profile
             </a>
 

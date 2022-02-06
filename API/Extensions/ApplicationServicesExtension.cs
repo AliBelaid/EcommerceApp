@@ -22,7 +22,9 @@ namespace API.Extensions
              services.AddScoped<IProductRepository, ProductRepository>();
              services.AddScoped<IBasketRepository,BasketRepository>();
              services.AddScoped<IOrderService,OrderService>();
+                 services.AddScoped<ILikesRepository,LikesRepository>();
               services.AddScoped<IUserRepository,UserRepository>();
+         
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped(typeof (IGenericRepository<>), (typeof (GenericRepository<>)));
             services.AddAutoMapper(typeof (MappingProfiles));

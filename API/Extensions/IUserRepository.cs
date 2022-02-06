@@ -20,5 +20,6 @@ namespace API.Extensions {
         void Delete (int id);
         //Task<Member> GetUserByNameAsync (string UserName);
       Task<PageList<Member>> GetMembersAsync (UserParems userParems);  
+      
     }
 }

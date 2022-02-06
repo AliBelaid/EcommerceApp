@@ -49,7 +49,16 @@ namespace Infrastructure.Identity
         {
 
   base.OnModelCreating(builder);
-
+    builder.Entity<UserLike>().HasKey(k=>new {k.SourceUserId , k.LikedUserId});
+     builder.Entity<UserLike>().HasOne(s=>s.SourceUser)
+     .WithMany(i => i.LikedUsers)
+     .HasForeignKey(y=>y.SourceUserId)
+     .OnDelete(DeleteBehavior.NoAction);
+   builder.Entity<UserLike>().HasOne(s=>s.LikedUser)
+     .WithMany(i => i.LikedByUsers)
+     .HasForeignKey(y=>y.LikedUserId)
+     .OnDelete(DeleteBehavior.NoAction);
+    
 
  builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
            if(Database.ProviderName=="Microsoft.EntityFrameworkCore.Sqlite") {
